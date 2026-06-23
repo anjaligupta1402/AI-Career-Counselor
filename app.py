@@ -7,24 +7,27 @@ import fitz
 
 st.set_page_config(page_title="AI Career Counselor", page_icon="🎓", layout="wide")
 
+
+
 st.markdown("""
 <style>
 .stApp {
-    background: #f4f5fb;
+    background: linear-gradient(180deg, #0d0c1a 0%, #15132b 100%);
 }
 .main .block-container {
     padding-top: 2rem;
     max-width: 1100px;
 }
 h1 {
-    color: #2d2a6e !important;
+    color: #c4b5fd !important;
     text-align: center;
     font-size: 2.6rem !important;
     font-weight: 700 !important;
     margin-bottom: 0.3rem !important;
+    text-shadow: 0 0 20px rgba(168, 139, 250, 0.4);
 }
 .stMarkdown p {
-    color: #5b5a8c !important;
+    color: #a5a3c9 !important;
     text-align: center;
     font-size: 1.05rem;
     margin-bottom: 1.5rem;
@@ -32,56 +35,73 @@ h1 {
 div[data-testid="stTextInput"] input,
 div[data-testid="stTextArea"] textarea,
 div[data-testid="stSelectbox"] > div {
-    border-radius: 10px !important;
-    border: 1.5px solid #d8d6f0 !important;
-    background: white !important;
+    border-radius: 12px !important;
+    border: 1px solid #3a3666 !important;
+    background: linear-gradient(145deg, #1c1a35, #211e3f) !important;
+    color: #e8e6ff !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05) !important;
 }
 div[data-testid="stTextInput"] label,
 div[data-testid="stTextArea"] label,
 div[data-testid="stSelectbox"] label {
     font-weight: 600 !important;
-    color: #3d3a7a !important;
+    color: #b8b3ff !important;
     font-size: 0.95rem !important;
 }
 .stButton button {
-    background: #4f46c4;
+    background: linear-gradient(145deg, #7c6ff0, #5b4fd1);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 0.6rem 1.8rem;
     font-weight: 600;
     font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(124, 111, 240, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
     transition: all 0.2s;
 }
 .stButton button:hover {
-    background: #3d35a0;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(124, 111, 240, 0.5), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 .stTabs [data-baseweb="tab-list"] {
-    gap: 6px;
-    background: white;
-    padding: 8px;
-    border-radius: 12px;
-    border: 1px solid #e3e1f5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: linear-gradient(145deg, #1c1a35, #18162e);
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid #2e2b54;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 .stTabs [data-baseweb="tab"] {
-    background: transparent;
-    border-radius: 8px;
-    padding: 10px 18px;
+    background: #211e3f;
+    border-radius: 10px;
+    padding: 10px 16px;
     font-weight: 600;
-    color: #6b6a99;
+    color: #9b97c9;
+    border: 1px solid #322d5c;
+    flex: 1 1 30%;
+    text-align: center;
+    justify-content: center;
 }
 .stTabs [aria-selected="true"] {
-    background: #4f46c4 !important;
+    background: linear-gradient(145deg, #7c6ff0, #5b4fd1) !important;
     color: white !important;
+    box-shadow: 0 4px 12px rgba(124, 111, 240, 0.5), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 div[data-testid="stSuccess"] {
-    background: white;
-    border-radius: 12px;
-    border-left: 4px solid #4f46c4;
+    background: linear-gradient(145deg, #1c1a35, #211e3f);
+    border-radius: 14px;
+    border-left: 4px solid #7c6ff0;
     padding: 1rem 1.2rem;
+    color: #e8e6ff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 div[data-testid="stWarning"] {
-    border-radius: 12px;
+    border-radius: 14px;
+}
+div[data-testid="stMarkdownContainer"] p {
+    color: #d4d2eb;
 }
 </style>
 """, unsafe_allow_html=True)
