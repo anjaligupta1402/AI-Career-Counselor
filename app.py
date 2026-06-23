@@ -1,10 +1,11 @@
+import os
 import streamlit as st
 from groq import Groq
 from fpdf import FPDF
 import base64
 import fitz
 
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 st.title("🎓 AI Career Counselor")
 st.write("Enter your details and I will suggest the best career options for you!")
 
