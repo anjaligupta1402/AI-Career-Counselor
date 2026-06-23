@@ -10,62 +10,78 @@ st.set_page_config(page_title="AI Career Counselor", page_icon="🎓", layout="w
 st.markdown("""
 <style>
 .stApp {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f4f5fb;
+}
+.main .block-container {
+    padding-top: 2rem;
+    max-width: 1100px;
 }
 h1 {
-    color: white !important;
+    color: #2d2a6e !important;
     text-align: center;
-    font-size: 3rem !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-size: 2.6rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.3rem !important;
 }
 .stMarkdown p {
-    color: white !important;
+    color: #5b5a8c !important;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
 }
-div[data-testid="stVerticalBlock"] > div:has(div.stTextInput), 
-div[data-testid="stVerticalBlock"] > div:has(div.stTextArea),
-div[data-testid="stVerticalBlock"] > div:has(div.stSelectbox) {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 10px;
+div[data-testid="stTextInput"] input,
+div[data-testid="stTextArea"] textarea,
+div[data-testid="stSelectbox"] > div {
+    border-radius: 10px !important;
+    border: 1.5px solid #d8d6f0 !important;
+    background: white !important;
+}
+div[data-testid="stTextInput"] label,
+div[data-testid="stTextArea"] label,
+div[data-testid="stSelectbox"] label {
+    font-weight: 600 !important;
+    color: #3d3a7a !important;
+    font-size: 0.95rem !important;
 }
 .stButton button {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: #4f46c4;
     color: white;
     border: none;
-    border-radius: 25px;
-    padding: 10px 30px;
-    font-weight: bold;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s;
+    border-radius: 10px;
+    padding: 0.6rem 1.8rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
 }
 .stButton button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background: #3d35a0;
 }
 .stTabs [data-baseweb="tab-list"] {
-    gap: 10px;
-    background: rgba(255,255,255,0.1);
-    padding: 10px;
-    border-radius: 15px;
+    gap: 6px;
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #e3e1f5;
 }
 .stTabs [data-baseweb="tab"] {
-    background: rgba(255,255,255,0.9);
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-weight: bold;
+    background: transparent;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
+    color: #6b6a99;
 }
 .stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    background: #4f46c4 !important;
     color: white !important;
 }
 div[data-testid="stSuccess"] {
-    background: rgba(255,255,255,0.95);
-    border-radius: 15px;
-    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid #4f46c4;
+    padding: 1rem 1.2rem;
+}
+div[data-testid="stWarning"] {
+    border-radius: 12px;
 }
 </style>
 """, unsafe_allow_html=True)
