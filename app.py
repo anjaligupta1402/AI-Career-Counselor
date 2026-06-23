@@ -5,14 +5,80 @@ from fpdf import FPDF
 import base64
 import fitz
 
+st.set_page_config(page_title="AI Career Counselor", page_icon="🎓", layout="wide")
+
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+h1 {
+    color: white !important;
+    text-align: center;
+    font-size: 3rem !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.stMarkdown p {
+    color: white !important;
+    text-align: center;
+    font-size: 1.1rem;
+}
+div[data-testid="stVerticalBlock"] > div:has(div.stTextInput), 
+div[data-testid="stVerticalBlock"] > div:has(div.stTextArea),
+div[data-testid="stVerticalBlock"] > div:has(div.stSelectbox) {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.stButton button {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+.stButton button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 15px;
+}
+.stTabs [data-baseweb="tab"] {
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    color: white !important;
+}
+div[data-testid="stSuccess"] {
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 15px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
 st.title("🎓 AI Career Counselor")
 st.write("Enter your details and I will suggest the best career options for you!")
 
-name = st.text_input("Your Name:")
-qualification = st.selectbox("Qualification:", ["12th Pass", "Graduate", "Post Graduate"])
-skills = st.text_area("Your Skills (separate by comma):")
-interest = st.text_area("Your Interests:")
+name = st.text_input("👤 Your Name:")
+qualification = st.selectbox("🎓 Qualification:", ["12th Pass", "Graduate", "Post Graduate"])
+skills = st.text_area("⚡ Your Skills (separate by comma):")
+interest = st.text_area("❤️ Your Interests:")
 
 def generate_pdf(title, content, filename):
     pdf = FPDF()
@@ -33,15 +99,15 @@ def ask_groq(prompt):
     return response.choices[0].message.content
 
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
-    "Career Suggestions",
-    "Learning Roadmap",
-    "Interview Questions",
-    "Skills Gap Analyzer",
-    "Resume Analyzer",
-    "Course Recommender",
-    "Salary Comparison",
-    "Resume Tips",
-    "Job Market Trends"
+    "🎯 Career Suggestions",
+    "🗺️ Learning Roadmap",
+    "💼 Interview Questions",
+    "🔍 Skills Gap Analyzer",
+    "📄 Resume Analyzer",
+    "🎓 Course Recommender",
+    "💰 Salary Comparison",
+    "📝 Resume Tips",
+    "📊 Job Market Trends"
 ])
 
 with tab1:
@@ -63,7 +129,7 @@ with tab1:
             st.warning("Please fill Skills and Interest!")
 
 with tab2:
-    career_goal = st.text_input("Enter your Dream Career:")
+    career_goal = st.text_input("🗺️ Enter your Dream Career:")
     if st.button("Generate Roadmap!"):
         if career_goal:
             prompt = f"""
@@ -81,7 +147,7 @@ with tab2:
             st.warning("Please enter your dream career!")
 
 with tab3:
-    career_interview = st.text_input("Enter Career for Interview Questions:")
+    career_interview = st.text_input("💼 Enter Career for Interview Questions:")
     if st.button("Generate Interview Questions!"):
         if career_interview:
             prompt = f"""
@@ -97,7 +163,7 @@ with tab3:
             st.warning("Please enter a career!")
 
 with tab4:
-    dream_career = st.text_input("Enter your Dream Career for Skills Gap Analysis:")
+    dream_career = st.text_input("🔍 Enter your Dream Career for Skills Gap Analysis:")
     if st.button("Analyze Skills Gap!"):
         if dream_career and skills:
             prompt = f"""
@@ -120,7 +186,7 @@ with tab4:
 
 with tab5:
     st.write("Upload your Resume and AI will analyze it!")
-    uploaded_file = st.file_uploader("Upload Resume (PDF only)", type="pdf")
+    uploaded_file = st.file_uploader("📄 Upload Resume (PDF only)", type="pdf")
     if st.button("Analyze Resume!"):
         if uploaded_file:
             pdf_doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
@@ -144,7 +210,7 @@ with tab5:
             st.warning("Please upload a PDF resume!")
 
 with tab6:
-    course_career = st.text_input("Enter Career for Course Recommendations:")
+    course_career = st.text_input("🎓 Enter Career for Course Recommendations:")
     if st.button("Recommend Courses!"):
         if course_career:
             prompt = f"""
@@ -162,9 +228,9 @@ with tab6:
 
 with tab7:
     st.write("Compare salaries of different careers!")
-    career1 = st.text_input("Enter First Career:")
-    career2 = st.text_input("Enter Second Career:")
-    career3 = st.text_input("Enter Third Career (optional):")
+    career1 = st.text_input("💰 Enter First Career:")
+    career2 = st.text_input("💰 Enter Second Career:")
+    career3 = st.text_input("💰 Enter Third Career (optional):")
     if st.button("Compare Salaries!"):
         if career1 and career2:
             prompt = f"""
@@ -183,7 +249,7 @@ with tab7:
             st.warning("Please enter at least 2 careers!")
 
 with tab8:
-    resume_career = st.text_input("Enter your Target Career for Resume Tips:")
+    resume_career = st.text_input("📝 Enter your Target Career for Resume Tips:")
     if st.button("Get Resume Tips!"):
         if resume_career:
             prompt = f"""
@@ -202,7 +268,7 @@ with tab8:
 
 with tab9:
     st.write("Discover which careers are in demand right now!")
-    industry = st.selectbox("Select Industry:", [
+    industry = st.selectbox("📊 Select Industry:", [
         "Technology", "Healthcare", "Finance", "Education",
         "Marketing", "Data Science", "Cybersecurity", "Design"
     ])
