@@ -11,7 +11,6 @@ An AI-based system that provides personalized career guidance to students based 
 ## Tech Stack
 - Python
 - Machine Learning
-- (yaha jo bhi libraries use ki ho jaise Scikit-learn, Pandas, etc. add karo)
 
 ## How to Run
 1. Clone the repository
